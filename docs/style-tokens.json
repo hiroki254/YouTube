@@ -1,0 +1,43 @@
+{
+  "$comment": "映像スタイルの数値はこのファイルだけで管理する（唯一の正）。ここにない数値を印象で作らない。値を変えるときは再計測し、method と source を更新すること。status: measured=画素/メタデータから実測, approx=低解像度素材からの概算（誤差あり）, lower_bound=サンプリング間隔に制約された下限値",
+  "source": {
+    "video": "https://youtu.be/ipw2kDkjNa8",
+    "materials": "YouTube公開ストーリーボード sb0（160x90px × 172コマ、約5.0秒間隔）、サムネイル maxresdefault（1280x720）、動画メタデータ",
+    "measured_on": "2026-10-24"
+  },
+  "format": {
+    "width": { "value": 1280, "status": "measured", "method": "メタデータ" },
+    "height": { "value": 720, "status": "measured", "method": "メタデータ" },
+    "fps": { "value": 30, "status": "measured", "method": "メタデータ" },
+    "duration_sec": { "value": 860, "status": "measured", "method": "メタデータ" }
+  },
+  "color": {
+    "ocean": { "value": "#083757", "status": "measured", "method": "地図フレーム117コマの右上28x12px領域の中央値" },
+    "ocean_mid": { "value": "#093B5E", "status": "measured", "method": "地図フレーム左端列、高さ33%〜60%の中央値（最も明るい帯）" },
+    "ocean_top_edge": { "value": "#0B2F46", "status": "measured", "method": "地図フレーム左端列 y=0 の中央値（上辺の減光）" },
+    "bottom_band_start": { "value": "#08395C", "status": "measured", "method": "左端列 y=67%" },
+    "bottom_band_end": { "value": "#041D2D", "status": "measured", "method": "左端列 y=93% 以下の中央値" },
+    "accent_yellow": { "value": "#FFCF01", "status": "measured", "method": "サムネイルの黄色文字画素の中央値" },
+    "accent_red": { "value": "#EE151E", "status": "measured", "method": "サムネイルの赤い両矢印画素の中央値" },
+    "thumbnail_outline": { "value": "#061220", "status": "measured", "method": "サムネイル黄色文字の領域内の暗部画素の中央値（黒に近い濃紺）" },
+    "text_white": { "value": "#FFFFFF", "status": "approx", "method": "字幕・ラベルは白飛びしており純白と判断" },
+    "sepia_ocean": { "value": null, "status": "approx", "method": "未計測。目視では暗いスレートグレー〜灰緑。160x90の圧縮で値が不安定なため数値なし" },
+    "sepia_land": { "value": null, "status": "approx", "method": "未計測。目視ではベージュ/サンド" }
+  },
+  "layout": {
+    "bottom_band_start_y": { "value": 0.73, "unit": "画面高さ比", "status": "approx", "method": "左端列の輝度が下降し始める位置（90px中 y≈66）。±1px=±0.011" },
+    "subtitle_center_y": { "value": 0.917, "unit": "画面高さ比", "status": "approx", "method": "字幕の白画素が集中する行 y=81〜84 / 90 の中心" },
+    "subtitle_text_height": { "value": 0.044, "unit": "画面高さ比", "status": "approx", "method": "白画素行の高さ 4px / 90。720pで約32px（±8px）" },
+    "subtitle_align": { "value": "center", "status": "measured", "method": "全コマで中央寄せ" },
+    "thumbnail_title_bbox": { "value": [0.113, 0.744, 0.888, 0.953], "unit": "[x0,y0,x1,y1] 画面比", "status": "measured", "method": "サムネイル黄色文字画素の外接矩形 (144,536)-(1136,686)" },
+    "thumbnail_arrow_bbox": { "value": [0.430, 0.467, 0.642, 0.531], "unit": "[x0,y0,x1,y1] 画面比", "status": "measured", "method": "サムネイル赤画素の外接矩形 (550,336)-(822,382)" }
+  },
+  "timing": {
+    "subtitle_max_interval_sec": { "value": 5.0, "status": "lower_bound", "method": "約5.0秒間隔のストーリーボードで毎コマ字幕が異なる → 字幕は5秒以内に切り替わる。実際の間隔はこれより短い可能性あり" },
+    "chapters_sec": {
+      "value": [0, 66, 104, 257, 364, 430, 633, 682, 826, 860],
+      "status": "measured",
+      "method": "メタデータの章情報（最後の値は終了時刻）"
+    }
+  }
+}
