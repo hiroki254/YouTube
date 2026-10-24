@@ -22,13 +22,28 @@
     "thumbnail_outline": { "value": "#061220", "status": "measured", "method": "サムネイル黄色文字の領域内の暗部画素の中央値（黒に近い濃紺）" },
     "text_white": { "value": "#FFFFFF", "status": "approx", "method": "字幕・ラベルは白飛びしており純白と判断" },
     "sepia_ocean": { "value": null, "status": "approx", "method": "未計測。目視では暗いスレートグレー〜灰緑。160x90の圧縮で値が不安定なため数値なし" },
-    "sepia_land": { "value": null, "status": "approx", "method": "未計測。目視ではベージュ/サンド" }
+    "sepia_land": { "value": null, "status": "approx", "method": "未計測。目視ではベージュ/サンド" },
+    "land": { "value": "#51684D", "status": "approx", "method": "地図フレーム（海の判定を通った117コマ）の上部 y<72% で、G>B+5 かつ R>45 の画素 58,895 個の中央値。参照動画の陸は衛星写真の質感付きで、これはその平均色（ベタ塗り用）" },
+    "background_profile": {
+      "value": [[0.0, "#0B2F46"], [0.067, "#063453"], [0.133, "#083757"], [0.2, "#0A3A5A"], [0.267, "#093B5C"], [0.333, "#093B5E"], [0.6, "#093B5E"], [0.667, "#08395C"], [0.733, "#053857"], [0.8, "#06314D"], [0.867, "#05263C"], [0.933, "#041D2D"], [1.0, "#041D2D"]],
+      "unit": "[画面高さ比, 色] の縦グラデーション",
+      "status": "measured",
+      "method": "地図フレームの左端列（x=5/160）を6pxごとに取り、全コマの中央値を並べたもの。1.0 は最下段の値を延長"
+    }
   },
   "layout": {
     "bottom_band_start_y": { "value": 0.73, "unit": "画面高さ比", "status": "approx", "method": "左端列の輝度が下降し始める位置（90px中 y≈66）。±1px=±0.011" },
     "subtitle_center_y": { "value": 0.917, "unit": "画面高さ比", "status": "approx", "method": "字幕の白画素が集中する行 y=81〜84 / 90 の中心" },
     "subtitle_text_height": { "value": 0.044, "unit": "画面高さ比", "status": "approx", "method": "白画素行の高さ 4px / 90。720pで約32px（±8px）" },
     "subtitle_align": { "value": "center", "status": "measured", "method": "全コマで中央寄せ" },
+    "year_text_height": { "value": 0.089, "unit": "画面高さ比", "status": "approx", "method": "年号の白文字の外接矩形の高さ（1905: 9px、1920年代: 7px、1940年代の終わり: 8px）/ 90 の中央値" },
+    "year_left_x": { "value": 0.106, "unit": "画面幅比", "status": "approx", "method": "年号の白文字の左端（16px, 18px）/ 160 の平均" },
+    "year_center_y": { "value": 0.6, "unit": "画面高さ比", "status": "approx", "method": "年号の白文字の縦中心（54, 52.5, 55）/ 90 の中央値" },
+    "statement_text_height": { "value": 0.056, "unit": "画面高さ比", "status": "approx", "method": "画面中央の問いかけ文（2行）の1行あたりの文字高さ 5px / 90" },
+    "statement_center_y": { "value": 0.539, "unit": "画面高さ比", "status": "approx", "method": "問いかけ文ブロックの縦中心 48.5px / 90" },
+    "chapter_text_height": { "value": 0.056, "unit": "画面高さ比", "status": "approx", "method": "章タイトル「1章 いまの島の行き来」の文字高さ 5px / 90" },
+    "chapter_left_x": { "value": 0.219, "unit": "画面幅比", "status": "approx", "method": "章タイトルの左端 35px / 160" },
+    "chapter_center_y": { "value": 0.544, "unit": "画面高さ比", "status": "approx", "method": "章タイトルの縦中心 49px / 90" },
     "thumbnail_title_bbox": { "value": [0.113, 0.744, 0.888, 0.953], "unit": "[x0,y0,x1,y1] 画面比", "status": "measured", "method": "サムネイル黄色文字画素の外接矩形 (144,536)-(1136,686)" },
     "thumbnail_arrow_bbox": { "value": [0.430, 0.467, 0.642, 0.531], "unit": "[x0,y0,x1,y1] 画面比", "status": "measured", "method": "サムネイル赤画素の外接矩形 (550,336)-(822,382)" }
   },

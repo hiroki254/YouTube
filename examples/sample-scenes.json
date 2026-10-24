@@ -1,0 +1,16 @@
+[
+  {"index": 0, "type": "map", "headline": null, "emphasis": null, "prefix": null, "number_value": null, "unit": null, "year_text": null,
+   "map": {"lon_min": 138.8, "lat_min": 40.3, "lon_max": 142.2, "lat_max": 42.2,
+           "places": [{"name": "青森", "lon": 140.74, "lat": 40.82}, {"name": "函館", "lon": 140.73, "lat": 41.77}],
+           "connect": false, "distance_label": null},
+   "dots": null, "items": null},
+  {"index": 1, "type": "statement", "headline": "海峡の真ん中に、どこの国の領海でもない帯がある？", "emphasis": "領海でもない帯", "prefix": null, "number_value": null, "unit": null, "year_text": null, "map": null, "dots": null, "items": null},
+  {"index": 2, "type": "chapter", "chapter_number": 1, "headline": "海の下を走る道"},
+  {"index": 3, "type": "year", "headline": null, "emphasis": null, "prefix": null, "number_value": null, "unit": null, "year_text": "1988", "map": null, "dots": null, "items": null},
+  {"index": 4, "type": "big_number", "headline": null, "emphasis": null, "prefix": "全長", "number_value": "53.85", "unit": "km", "year_text": null, "map": null, "dots": null, "items": null},
+  {"index": 5, "type": "chapter", "chapter_number": 2, "headline": "線を引いた理由"},
+  {"index": 6, "type": "compare", "headline": null, "emphasis": null, "prefix": null, "number_value": null, "unit": null, "year_text": null, "map": null, "dots": null,
+   "items": [{"label": "ふつうの領海", "value": 12, "value_text": "12海里"}, {"label": "特定海域", "value": 3, "value_text": "3海里"}]},
+  {"index": 7, "type": "dot_grid", "headline": null, "emphasis": null, "prefix": null, "number_value": null, "unit": null, "year_text": null, "map": null,
+   "dots": {"filled": 5, "total": 5, "label": "特定海域は5つ"}, "items": null}
+]

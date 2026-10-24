@@ -1,0 +1,33 @@
+{
+  "$comment": "【仮の値】参照動画から計測できなかった描画パラメータ。docs/style-tokens.json（実測値）とは別に管理し、印象で決めた値であることを明示する。実測できたら style-tokens.json へ移してここから消す。動画を作るたびに、使った仮の値が out/style-report.md に一覧で出る。",
+  "values": {
+    "big_number_text_height": { "value": 0.12, "unit": "画面高さ比", "note": "黄色の大きな数字。ストーリーボードの解像度では黄色を安定して検出できず未計測" },
+    "big_number_unit_ratio": { "value": 0.45, "unit": "数字の高さに対する比", "note": "数字の前後に付ける白い小さな文字（単位など）" },
+    "big_number_center_y": { "value": 0.45, "unit": "画面高さ比", "note": "大きな数字の縦位置" },
+    "map_label_text_height": { "value": 0.032, "unit": "画面高さ比", "note": "地名ラベル。160x90では2〜3pxで計測不能" },
+    "map_padding": { "value": 0.12, "unit": "画面の短辺に対する比", "note": "地図の範囲の外側に取る余白" },
+    "map_line_width": { "value": 0.004, "unit": "画面高さ比", "note": "ルート線・距離線の太さ" },
+    "map_point_radius": { "value": 0.007, "unit": "画面高さ比", "note": "地点の白い点の半径" },
+    "map_label_offset": { "value": 0.012, "unit": "画面高さ比", "note": "地点からラベルまでの距離" },
+    "map_zoom_end": { "value": 1.04, "unit": "倍率", "note": "地図のゆっくりしたズーム（シーンの最後の倍率）" },
+    "overlay_fade_sec": { "value": 0.4, "unit": "秒", "note": "文字や図が現れるフェードの長さ" },
+    "count_up_sec": { "value": 0.8, "unit": "秒", "note": "大きな数字のカウントアップの長さ" },
+    "line_draw_sec": { "value": 1.0, "unit": "秒", "note": "ルート線が描かれていく長さ" },
+    "sentence_gap_sec": { "value": 0.3, "unit": "秒", "note": "文と文の間の無音" },
+    "lead_in_sec": { "value": 0.5, "unit": "秒", "note": "動画冒頭の無音" },
+    "tail_sec": { "value": 1.0, "unit": "秒", "note": "動画末尾の無音" },
+    "chapter_extra_sec": { "value": 0.8, "unit": "秒", "note": "章タイトルの読み上げ後に画面を残す長さ" },
+    "subtitle_max_width": { "value": 0.86, "unit": "画面幅比", "note": "字幕1行の最大幅。超える文は複数の字幕に分けて順に出す" },
+    "statement_max_width": { "value": 0.76, "unit": "画面幅比", "note": "画面中央の文の最大幅（折り返し）" },
+    "statement_line_gap": { "value": 0.5, "unit": "文字高さに対する比", "note": "画面中央の文の行間" },
+    "year_skew": { "value": 0.2, "unit": "横方向のせん断係数", "note": "年号のイタリック（斜体）の傾き" },
+    "dot_grid_columns": { "value": 10, "unit": "個", "note": "ドットグリッドの列数" },
+    "dot_grid_cell": { "value": 0.032, "unit": "画面高さ比", "note": "ドット1個分の枠の大きさ" },
+    "dot_grid_dot_ratio": { "value": 0.7, "unit": "枠に対する比", "note": "枠に対するドットの直径" },
+    "dot_grid_unfilled_opacity": { "value": 0.3, "unit": "不透明度", "note": "数に含まれないドットの薄さ" },
+    "compare_bar_height": { "value": 0.045, "unit": "画面高さ比", "note": "比較の棒の太さ" },
+    "compare_label_width": { "value": 0.25, "unit": "画面幅比", "note": "比較のラベル欄の幅" },
+    "compare_bar_max_width": { "value": 0.45, "unit": "画面幅比", "note": "比較の棒の最大の長さ" },
+    "compare_row_gap": { "value": 0.5, "unit": "棒の太さに対する比", "note": "比較の行間" }
+  }
+}

@@ -1,0 +1,93 @@
+name: 台本から動画を作る
+
+on:
+  workflow_dispatch:
+    inputs:
+      gist_url:
+        description: "台本を置いた Gist の URL"
+        required: true
+        type: string
+      speaker_id:
+        description: "VOICEVOX の話者（スタイル）ID。13 = 青山龍星（ノーマル）"
+        required: true
+        default: "13"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  make-video:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    services:
+      voicevox:
+        image: voicevox/voicevox_engine:cpu-ubuntu22.04-0.25.2
+        ports:
+          - 50021:50021
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: フォントと ffmpeg を入れる
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q fonts-noto-cjk ffmpeg
+
+      - name: 地図データ（Natural Earth）のキャッシュ
+        id: land-cache
+        uses: actions/cache@v4
+        with:
+          path: data/ne_10m_land.geojson
+          key: natural-earth-v5.1.2-10m-land
+
+      - name: 地図データを取得
+        if: steps.land-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p data
+          curl -sSfL -o data/ne_10m_land.geojson \
+            https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_10m_land.geojson
+
+      - name: Python パッケージを入れる
+        run: pip install -r requirements.txt
+
+      - name: 作風ルールのテスト
+        run: python -m unittest discover -s tests -t .
+
+      - name: 動画を作る
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GIST_URL: ${{ inputs.gist_url }}
+          SPEAKER_ID: ${{ inputs.speaker_id }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::リポジトリの Secrets に ANTHROPIC_API_KEY を登録してください"
+            exit 1
+          fi
+          python -m pipeline.main --gist "$GIST_URL" --speaker "$SPEAKER_ID" --out out
+
+      - name: 結果をまとめる
+        if: always()
+        run: |
+          if [ -f out/style-report.md ]; then cat out/style-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+          if [ -f out/credits.txt ]; then
+            { echo; echo "## 概要欄に入れるクレジット"; echo '```'; cat out/credits.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: video
+          path: |
+            out/*.mp4
+            out/scenes.json
+            out/script.json
+            out/style-report.md
+            out/credits.txt
+          retention-days: 14
+          if-no-files-found: warn
