@@ -1,0 +1,104 @@
+{
+  "$comment": "Gemini に返させる「編集構造」の形。文章・ナレーションの書き起こしは項目に入れない（参照動画の内容をそのまま使わないため）。",
+  "type": "object",
+  "properties": {
+    "video": {
+      "type": "object",
+      "properties": {
+        "duration_sec": { "type": "number", "description": "動画全体の長さ（秒）" },
+        "language": { "type": "string", "description": "ナレーションの言語（例: ja）" },
+        "genre": { "type": "string", "description": "ジャンルを短く（例: 地理雑学の地図アニメ解説）" }
+      },
+      "required": ["duration_sec", "language", "genre"]
+    },
+    "overall": {
+      "type": "object",
+      "properties": {
+        "tone": { "type": "string", "description": "全体の雰囲気を1〜2文で" },
+        "visual_base": { "type": "string", "description": "画面のベースになっている映像の種類を1〜2文で" },
+        "hook_strategy": { "type": "string", "description": "冒頭30秒で視聴者を引き込む手法（内容ではなく手法を書く）" },
+        "pacing_summary": { "type": "string", "description": "カット割り・字幕の切り替えのテンポを1〜2文で" }
+      },
+      "required": ["tone", "visual_base", "hook_strategy", "pacing_summary"]
+    },
+    "chapters": {
+      "type": "array",
+      "description": "章（または意味のまとまり）。時間順。",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": { "type": "integer", "description": "0 が導入。以降 1, 2, ..." },
+          "start_sec": { "type": "number" },
+          "end_sec": { "type": "number" },
+          "role": {
+            "type": "string",
+            "enum": ["hook", "current_state", "cause", "history", "episode", "main_story", "aftermath", "future", "summary", "other"],
+            "description": "構成上の役割"
+          },
+          "purpose": { "type": "string", "description": "この章が構成上なにをしているか（内容の要約ではなく役割）" }
+        },
+        "required": ["index", "start_sec", "end_sec", "role", "purpose"]
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "description": "画面の構図が変わる単位のシーン。時間順。",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start_sec": { "type": "number" },
+          "end_sec": { "type": "number" },
+          "chapter_index": { "type": "integer" },
+          "visual_type": {
+            "type": "string",
+            "enum": ["map", "wide_map", "historic_map", "photo", "footage", "big_number", "year", "dot_grid", "chart", "timeline", "diagram", "title_card", "statement", "other"],
+            "description": "画面の主役になっている映像の種類"
+          },
+          "camera": {
+            "type": "string",
+            "enum": ["static", "zoom_in", "zoom_out", "pan", "dolly", "ken_burns", "other"]
+          },
+          "transition_in": {
+            "type": "string",
+            "enum": ["cut", "crossfade", "camera_move", "wipe", "other"],
+            "description": "前のシーンからのつなぎ方"
+          },
+          "overlays": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["subtitle", "chapter_title", "year", "big_number", "place_label", "route_line", "distance_bracket", "outline", "icon", "cross_mark", "glow", "photo_card", "caption"]
+            },
+            "description": "映像に重なっている要素"
+          },
+          "elements_added": { "type": "integer", "description": "このシーンの中で順に足された要素の数" },
+          "narration_role": {
+            "type": "string",
+            "enum": ["question", "fact", "data", "cause", "history", "episode", "comparison", "transition", "summary", "call_to_action", "other"]
+          },
+          "description": { "type": "string", "description": "画面で起きていることを演出の言葉で短く。ナレーションや画面の文字を書き写さない" }
+        },
+        "required": ["start_sec", "end_sec", "chapter_index", "visual_type", "camera", "transition_in", "overlays", "elements_added", "narration_role", "description"]
+      }
+    },
+    "techniques": {
+      "type": "array",
+      "description": "繰り返し使われている演出手法",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "how": { "type": "string", "description": "どう見せているか" },
+          "frequency": { "type": "string", "enum": ["once", "few", "often", "always"] }
+        },
+        "required": ["name", "how", "frequency"]
+      }
+    },
+    "uncertain": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "動画から確実に読み取れなかったこと"
+    }
+  },
+  "required": ["video", "overall", "chapters", "scenes", "techniques", "uncertain"]
+}
